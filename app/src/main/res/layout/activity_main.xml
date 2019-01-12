@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_send"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="#fff"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp" />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/category_list"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@id/my_toolbar_send"
+        android:layout_height="match_parent" />
+    <!--<ScrollView
+        android:layout_below="@+id/my_toolbar_send"
+        android:id="@+id/cat_scroll"
+        android:padding="8dp"
+        android:layout_marginBottom="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                android:padding="8dp"
+                android:layout_margin="8dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/first_category_set"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc1010"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/ministers"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc1020"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/list_canditates"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc1030"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/branch_summits"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="30dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:paddingRight="8dp"
+                            android:focusable="true">
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:id="@+id/mc1031"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:textStyle="bold"
+                                android:text="@string/young_summit"
+                                android:layout_weight="1"
+                                android:paddingStart="8dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:paddingRight="8dp"
+                            android:focusable="true">
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:id="@+id/mc1032"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:textStyle="bold"
+                                android:text="@string/women_summit"
+                                android:layout_weight="1"
+                                android:paddingStart="8dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:paddingRight="8dp"
+                            android:focusable="true">
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:id="@+id/mc1033"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="8dp"
+                                android:textStyle="bold"
+                                android:text="@string/the_barch_summit"
+                                android:layout_weight="1"
+                                android:paddingStart="8dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/second_category_set"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc2010"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/business"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc2020"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/three_wheel"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc2030"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/self_employees"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc2040"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/dham_teachers"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/mc2050"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/pre_school"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc2060"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/farmers"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/third_category_set"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc3010"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/agri_offices"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc3020"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/samurdhi"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc3030"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/pension"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/mc3040"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/villedge_officer"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="8dp"
+                        android:focusable="true">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/mc3050"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
+                            android:textStyle="bold"
+                            android:text="@string/other"
+                            android:layout_weight="1"
+                            android:paddingStart="8dp" />
+                    </LinearLayout>
+                    <View style="@style/Divider"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/send_btn_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00c853"
+            android:id="@+id/send_btn"
+            android:textColor="#fff"
+            android:text="Send"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

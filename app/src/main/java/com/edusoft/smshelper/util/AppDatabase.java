@@ -1,0 +1,14 @@
+package com.edusoft.smshelper.util;
+
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.RoomDatabase;
+
+import com.edusoft.smshelper.model.CategoryModelRoom;
+import com.edusoft.smshelper.model.ContactModelRoom;
+import com.edusoft.smshelper.model.SmsModelRoom;
+
+
+@Database(entities = {SmsModelRoom.class, ContactModelRoom.class, CategoryModelRoom.class}, version = 1, exportSchema = false)
+public abstract class AppDatabase extends RoomDatabase {
+    public abstract PostsDAO userDao();
+}

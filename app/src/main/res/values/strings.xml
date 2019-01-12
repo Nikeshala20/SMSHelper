@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SMS Helper</string>
+    <string name="ministers">සභාපති මංත්‍රී කණ්ඩායම්</string>
+    <string name="list_canditates">ලැයිස්තු අපේක්ෂකයි</string>
+    <string name="branch_summits">ශාඛා සමිති</string>
+    <string name="the_barch_summit">ශාඛා සමිති</string>
+    <string name="women_summit">කාන්තා සමිති</string>
+    <string name="young_summit">තරුණ සමිති</string>
+    <string name="business">ව්‍යාපාරික ප්‍රජාව</string>
+    <string name="three_wheel">ත්‍රීරෝද රථ ස‌ංගමය</string>
+    <string name="self_employees">ස්වයං රැකියා වුර්තිකයන්</string>
+    <string name="dham_teachers">දහම් පාසල් ගුරුවරුන්</string>
+    <string name="pre_school">පෙර පාසල් ගුරුවරුන්</string>
+    <string name="farmers">ගොවි</string>
+    <string name="agri_offices">කෘෂි නිළධාරීන්</string>
+    <string name="samurdhi">සමුර්ධි නිළධාරීන්</string>
+    <string name="pension">විශ්‍රාමික රජයේ නිළධාරීන්</string>
+    <string name="villedge_officer">ග්‍රාම නිළධාරීන්</string>
+    <string name="other">වෙනත් රාජ්‍ය නිළධාරීන්</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="sent_messages">Sent Messages</string>
+    <string name="insert_new_numbers">Numbers List</string>
+    <string name="insert_numbers_from_contacts">Insert Numbers From Contacts</string>
+    <string name="add_this_number">Add This Number</string>
+    <string name="add_new_contact">Add New Contact</string>
+    <string name="insert">Insert</string>
+    <string name="phone_number">Phone number</string>
+    <string name="name">Name</string>
+    <string name="insert_new_category">Insert new category</string>
+    <string name="category_name">Category Name</string>
+    <string name="add_new_category">Add New Category</string>
+    <string name="new_category_name">New Category Name</string>
+
+    <string-array name="cat_list">
+        <item>@string/ministers</item>
+        <item>@string/list_canditates</item>
+        <item>@string/young_summit</item>
+        <item>@string/women_summit</item>
+        <item>@string/branch_summits</item>
+        <item>@string/business</item>
+        <item>@string/three_wheel</item>
+        <item>@string/self_employees</item>
+        <item>@string/dham_teachers</item>
+        <item>@string/pre_school</item>
+        <item>@string/farmers</item>
+        <item>@string/agri_offices</item>
+        <item>@string/samurdhi</item>
+        <item>@string/pension</item>
+        <item>@string/villedge_officer</item>
+        <item>@string/other</item>
+    </string-array>
+</resources>

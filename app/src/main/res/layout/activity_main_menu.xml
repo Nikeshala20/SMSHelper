@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#63001b"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainMenu">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_message_black_24dp"
+            android:text="@string/send_sms"
+            android:padding="8dp"
+            android:id="@+id/send_sms"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="@string/insert_new_numbers"
+            android:padding="8dp"
+            android:drawableEnd="@drawable/ic_view_list_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/numbers_list"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="@string/insert_numbers_from_contacts"
+            android:padding="8dp"
+            android:drawableEnd="@drawable/ic_perm_contact_calendar_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/insert_numbers_from_contact_list"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="Category List"
+            android:padding="8dp"
+            android:drawableEnd="@drawable/ic_add_circle_outline_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/category_insert"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
