@@ -85,6 +85,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         findViewById(R.id.insert_numbers_from_contact_list).setOnClickListener(this);
         findViewById(R.id.numbers_list).setOnClickListener(this);
         findViewById(R.id.category_insert).setOnClickListener(this);
+        findViewById(R.id.sent_sms).setOnClickListener(this);
 
     }
 
@@ -107,6 +108,10 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
                 break;
             case R.id.category_insert:
                 i = new Intent(MainMenu.this, CategoryList.class);
+                startActivity(i);
+                break;
+            case R.id.sent_sms:
+                i = new Intent(MainMenu.this, SentBox.class);
                 startActivity(i);
                 break;
         }

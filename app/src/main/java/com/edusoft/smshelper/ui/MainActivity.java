@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity{
     private static List<CategoryModelRoom> catList;
     private static CustomAdapter adapter;
 
+    private String message = "";
+
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,10 @@ public class MainActivity extends AppCompatActivity{
         db = Room.databaseBuilder(MainActivity.this,
                 AppDatabase.class, "numbers").build();
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            message = extras.getString("msg");
+        }
 
         Thread custom =new Thread(
                     new Runnable() {
@@ -91,6 +97,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Send.class);
                 i.putIntegerArrayListExtra("numberlist",result);
+                i.putExtra("msg",message);
                 startActivityForResult(i, 5);
 
                 //Toast.makeText(MainActivity.this, "Enabled",Toast.LENGTH_SHORT).show();

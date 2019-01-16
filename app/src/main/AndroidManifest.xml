@@ -50,8 +50,12 @@
         <activity
             android:name=".ui.CategoryList"
             android:theme="@style/noAction" />
-        <activity android:name=".ui.EditCategory"
-            android:theme="@style/Theme.Transparent"/>
+        <activity
+            android:name=".ui.EditCategory"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".ui.SentBox"
+            android:theme="@style/noAction" />
     </application>
 
 </manifest>

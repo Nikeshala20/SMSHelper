@@ -35,6 +35,7 @@ public class Send extends AppCompatActivity {
     Integer count =1;
     List<ContactModelRoom> numberList;
     private Handler progressBarHandler = new Handler();
+    private String message = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,10 @@ public class Send extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             result = extras.getIntegerArrayList("numberlist");
+            message = extras.getString("msg");
         }
+
+        editText.setText(message);
 
         for(int i=0; i<result.size(); i++)
         {
@@ -81,18 +85,7 @@ public class Send extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 new SendSMSTask(Send.this).execute();
-               /* SmsModelRoom smsModelRoom = new SmsModelRoom();
-                smsModelRoom._date = new java.util.Date().toString();
-                smsModelRoom.message = editText.getText().toString();
-
-                Toast.makeText(Send.this, ""+numberList.size(), Toast.LENGTH_SHORT).show();
-               // ExecutorService executorService = Executors.newSingleThreadExecutor();
-                for(int i=0; i<numberList.size(); i++)
-                {
-                    sendSMS(numberList.get(i).number, editText.getText().toString());
-                }*/
             }
         });
     }
@@ -122,6 +115,8 @@ public class Send extends AppCompatActivity {
             SmsModelRoom smsModelRoom = new SmsModelRoom();
             smsModelRoom._date = new java.util.Date().toString();
             smsModelRoom.message = editText.getText().toString();
+
+            db.userDao().insertSms(smsModelRoom);
 
             for(int i=0; i<numberList.size(); i++)
             {

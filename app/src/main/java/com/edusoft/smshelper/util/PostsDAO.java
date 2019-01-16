@@ -58,9 +58,14 @@ public interface PostsDAO {
 
 
     @Insert
-    long insertSms(SmsModelRoom post);
+    void insertSms(SmsModelRoom post);
+
+
     @Delete
     int deleteSms(SmsModelRoom post);
+
+    @Query("SELECT * FROM SmsModelRoom WHERE id= :id LIMIT 1")
+    SmsModelRoom getSms(int id);
 
 
 }

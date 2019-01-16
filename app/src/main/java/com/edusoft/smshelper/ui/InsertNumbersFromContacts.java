@@ -78,35 +78,12 @@ public class InsertNumbersFromContacts extends AppCompatActivity {
         });
     }
 
-    private void showActionsDialog(final int position) {
-        CharSequence colors[] = new CharSequence[]{"Edit", "Delete"};
-        String[] s = { "India ", "Arica", "India ", "Arica", "India ", "Arica",
-                "India ", "Arica", "India ", "Arica" };
-
-        final ArrayAdapter<String> adp = new ArrayAdapter<String>(InsertNumbersFromContacts.this,
-                android.R.layout.simple_spinner_item, s);
-        final Spinner sp = new Spinner(InsertNumbersFromContacts.this);
-        Button btnTag = new Button(this);
-        btnTag.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        btnTag.setText("Button");
-        //btnTag.setId(R.id.new_number_set);
-
-        sp.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        sp.setAdapter(adp);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose option");
-        builder.setView(sp);
-        builder.setView(btnTag);
-        builder.show();
-    }
 
     private ArrayList<ListItemModel> getContactList() {
         ContentResolver cr = getContentResolver();
         ArrayList<ListItemModel> listItemModels = new ArrayList<>();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
-
         if ((cur != null ? cur.getCount() : 0) > 0) {
             while (cur != null && cur.moveToNext()) {
                 String id = cur.getString(
@@ -122,9 +99,6 @@ public class InsertNumbersFromContacts extends AppCompatActivity {
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
                             new String[]{id}, null);
                     while (pCur.moveToNext()) {
-
-
-
                         String phoneNo = pCur.getString(pCur.getColumnIndex(
                                 ContactsContract.CommonDataKinds.Phone.NUMBER));
                         listItemModels.add(new ListItemModel(name,phoneNo));
