@@ -17,9 +17,6 @@
             android:theme="@style/noAction" />
         <activity android:name=".ui.MainMenu" />
         <activity
-            android:name=".ui.InsertNumbers"
-            android:theme="@style/noAction" />
-        <activity
             android:name=".ui.NumbersList"
             android:theme="@style/noAction" />
         <activity android:name=".ui.SentMessages" />

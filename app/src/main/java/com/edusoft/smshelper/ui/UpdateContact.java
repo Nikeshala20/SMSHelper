@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.edusoft.smshelper.R;
 import com.edusoft.smshelper.model.CategoryModelRoom;
@@ -82,22 +83,28 @@ public class UpdateContact extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread()
+                if(!editText.getText().toString().isEmpty())
                 {
-                    @Override
-                    public void run() {
-                        super.run();
-                        ContactModelRoom model = db.userDao().getContact(id);
-                        model.catCodeId = catList.get(spinner.getSelectedItemPosition()).id;
-                        model.number = editText.getText().toString();
+                    new Thread()
+                    {
+                        @Override
+                        public void run() {
+                            super.run();
+                            ContactModelRoom model = db.userDao().getContact(id);
+                            model.catCodeId = catList.get(spinner.getSelectedItemPosition()).id;
+                            model.number = editText.getText().toString();
 
-                        db.userDao().updateContact(model);
-                        Intent responseIntent = new Intent();
-                        responseIntent.putExtra("success",true);
-                        setResult(4,responseIntent);
-                        finish();
-                    }
-                }.start();
+                            db.userDao().updateContact(model);
+                            Intent responseIntent = new Intent();
+                            responseIntent.putExtra("success",true);
+                            setResult(4,responseIntent);
+                            finish();
+                        }
+                    }.start();
+                }else
+                {
+                    Toast.makeText(UpdateContact.this, "Please insert the number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

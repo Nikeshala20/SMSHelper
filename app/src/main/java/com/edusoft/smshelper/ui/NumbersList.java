@@ -78,21 +78,27 @@ public class NumbersList extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        db.userDao().insertContact(new ContactModelRoom(catList.get(spinner.getSelectedItemPosition()).id,editText.getText().toString(), new_phone_name.getText().toString()));
-                        arrayList.add(new ContactModelRoom(catList.get(spinner.getSelectedItemPosition()).id,editText.getText().toString(), new_phone_name.getText().toString()));
+                if(!(new_phone_name.getText().toString().isEmpty() || editText.getText().toString().isEmpty()))
+                {
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            db.userDao().insertContact(new ContactModelRoom(catList.get(spinner.getSelectedItemPosition()).id,editText.getText().toString(), new_phone_name.getText().toString()));
+                            arrayList.add(new ContactModelRoom(catList.get(spinner.getSelectedItemPosition()).id,editText.getText().toString(), new_phone_name.getText().toString()));
+                        }
+                    });
+                    thread.start();
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-                thread.start();
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(NumbersList.this, "Number saved successfully!", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    Toast.makeText(NumbersList.this, "Please enter values", Toast.LENGTH_SHORT).show();
                 }
-                adapter.notifyDataSetChanged();
-                Toast.makeText(NumbersList.this, "Number saved successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

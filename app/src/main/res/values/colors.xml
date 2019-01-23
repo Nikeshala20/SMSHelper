@@ -9,4 +9,5 @@
 
     <color name="white">#fff</color>
     <color name="black">#000</color>
+    <color name="btn_background">#980842</color>
 </resources>

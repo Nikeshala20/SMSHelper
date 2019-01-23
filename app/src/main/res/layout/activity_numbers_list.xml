@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     tools:context=".ui.NumbersList">
 
@@ -51,6 +52,9 @@
 
             <Button
                 android:id="@+id/new_insert"
+                android:background="@color/btn_background"
+                android:textColor="#fff"
+                android:layout_margin="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/insert"/>

@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:background="@drawable/gradient_background"
             android:orientation="vertical">
             <EditText
                 android:layout_width="match_parent"
@@ -33,6 +34,9 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/btn_background"
+                android:textColor="#fff"
+                android:layout_margin="4dp"
                 android:id="@+id/send_button_send"
                 android:text="Send"/>
 

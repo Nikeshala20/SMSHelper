@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:background="@drawable/gradient_background"
             android:orientation="vertical">
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="match_parent"
@@ -30,6 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/insert_to_list"
+                android:layout_margin="4dp"
+                android:background="@color/btn_background"
+                android:textColor="#fff"
                 android:text="Add Number"/>
 
         </LinearLayout>

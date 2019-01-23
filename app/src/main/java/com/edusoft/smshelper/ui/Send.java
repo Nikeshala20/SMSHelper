@@ -80,12 +80,18 @@ public class Send extends AppCompatActivity {
         }
         executorService.shutdown();
         while (!executorService.isTerminated()){}
-        Toast.makeText(Send.this, numberList.size()+"",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Send.this, numberList.size()+"",Toast.LENGTH_SHORT).show();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SendSMSTask(Send.this).execute();
+                if(!editText.getText().toString().isEmpty())
+                {
+                    new SendSMSTask(Send.this).execute();
+                }else
+                {
+                    Toast.makeText(Send.this, "Please type your message", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

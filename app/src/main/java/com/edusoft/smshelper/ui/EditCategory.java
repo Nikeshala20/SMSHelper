@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.edusoft.smshelper.R;
 import com.edusoft.smshelper.model.CategoryModelRoom;
@@ -39,20 +40,26 @@ public class EditCategory extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread()
+                if(!editText.getText().toString().isEmpty())
                 {
-                    @Override
-                    public void run() {
-                        super.run();
-                        CategoryModelRoom model = db.userDao().getCategory(id);
-                        model.name = editText.getText().toString();
-                        db.userDao().updateCategory(model);
-                        Intent responseIntent = new Intent();
-                        responseIntent.putExtra("updated",true);
-                        setResult(7,responseIntent);
-                        finish();
-                    }
-                }.start();
+                    new Thread()
+                    {
+                        @Override
+                        public void run() {
+                            super.run();
+                            CategoryModelRoom model = db.userDao().getCategory(id);
+                            model.name = editText.getText().toString();
+                            db.userDao().updateCategory(model);
+                            Intent responseIntent = new Intent();
+                            responseIntent.putExtra("updated",true);
+                            setResult(7,responseIntent);
+                            finish();
+                        }
+                    }.start();
+                }else
+                {
+                    Toast.makeText(EditCategory.this, "Please enter category name", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

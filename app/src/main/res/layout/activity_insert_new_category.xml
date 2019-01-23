@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:background="@drawable/gradient_background"
             android:orientation="vertical">
             <EditText
                 android:layout_width="match_parent"
@@ -28,6 +29,9 @@
 
             <Button
                 android:layout_width="match_parent"
+                android:background="@color/btn_background"
+                android:textColor="#fff"
+                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/insert_category_button"
                 android:text="Add Category"/>
