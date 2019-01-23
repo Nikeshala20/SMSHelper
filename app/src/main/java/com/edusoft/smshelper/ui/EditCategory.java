@@ -58,6 +58,7 @@ public class EditCategory extends AppCompatActivity {
                     }.start();
                 }else
                 {
+
                     Toast.makeText(EditCategory.this, "Please enter category name", Toast.LENGTH_SHORT).show();
                 }
             }
