@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.edusoft.smshelper.R;
 import com.edusoft.smshelper.model.CategoryModelRoom;
 import com.edusoft.smshelper.model.ContactModelRoom;
+import com.edusoft.smshelper.model.MainCategoryRoom;
 import com.edusoft.smshelper.util.AppDatabase;
 
 import java.util.ArrayList;
@@ -43,10 +45,10 @@ public class MainActivity extends AppCompatActivity{
     Button button;
     ListView listView;
     private AppDatabase db;
-    private static List<CategoryModelRoom> catList;
+    private static List<MainCategoryRoom> catList;
     private static CustomAdapter adapter;
+    public static List<Boolean> isSelected;
 
-    private String message = "";
 
     @SuppressLint("CutPasteId")
     @Override
@@ -60,21 +62,22 @@ public class MainActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         button = findViewById(R.id.send_btn);
+        isSelected = new ArrayList<>();
 
         catList = new ArrayList<>();
         db = Room.databaseBuilder(MainActivity.this,
                 AppDatabase.class, "numbers").build();
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            message = extras.getString("msg");
-        }
 
         Thread custom =new Thread(
                     new Runnable() {
                         @Override
                         public void run() {
-                            catList.addAll(db.userDao().getCatAll());
+                            catList.addAll(db.userDao().getAllMainCategory());
+                            for(int i=0; i<catList.size(); i++)
+                            {
+                                isSelected.add(false);
+                            }
                         }
                     }
                 );
@@ -89,6 +92,18 @@ public class MainActivity extends AppCompatActivity{
         listView = findViewById(R.id.category_list);
         adapter = new CustomAdapter(this, R.layout.send_item,catList);
         listView.setAdapter(adapter);
+        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(MainActivity.this, SubCategory.class);
+                i.putExtra("id", catList.get(position).id);
+                startActivity(i);
+               // view.
+            }
+        };
+        listView.setOnItemClickListener(onItemClickListener);
+
+
 
         result = new ArrayList<>();
 
@@ -96,16 +111,62 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Send.class);
-                i.putIntegerArrayListExtra("numberlist",result);
-                i.putExtra("msg",message);
+                i.putIntegerArrayListExtra("numberlist",returnListCats());
                 startActivityForResult(i, 5);
 
                 //Toast.makeText(MainActivity.this, "Enabled",Toast.LENGTH_SHORT).show();
             }
         });
 
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent i = new Intent(MainActivity.this, SubCategory.class);
+//                i.putExtra("id", catList.get(position).id);
+//                startActivity(i);
+//                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
     }
 
+    private ArrayList<Integer> returnListCats()
+    {
+        ArrayList<Integer> results = new ArrayList<>();
+        final List<CategoryModelRoom> catListAll = new ArrayList<>();
+
+        for(int i=0; i<isSelected.size(); i++)
+        {
+
+            if(isSelected.get(i))
+            {
+                final int finalI = i;
+                Thread custom =new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                catListAll.addAll(db.userDao().getCatAllWhere(catList.get(finalI).id));
+                            }
+                        }
+                );
+                custom.start();
+                try {
+                    custom.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            for(int j=0; j<catListAll.size(); j++)
+            {
+                results.add(catListAll.get(j).id);
+            }
+
+            //Toast.makeText(this, ""+results.size(), Toast.LENGTH_SHORT).show();
+
+        }
+        return results;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -120,10 +181,10 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    public static class CustomAdapter extends ArrayAdapter<CategoryModelRoom> implements View.OnClickListener {
+    public static class CustomAdapter extends ArrayAdapter<MainCategoryRoom> implements View.OnClickListener {
         Context mContext;
 
-        public CustomAdapter( Context context, int resource, List<CategoryModelRoom> list) {
+        public CustomAdapter( Context context, int resource, List<MainCategoryRoom> list) {
             super(context, resource, list);
             mContext = context;
         }
@@ -131,6 +192,17 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v) {
 
+        }
+        @Override
+        public int getViewTypeCount() {
+
+            return getCount();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+
+            return position;
         }
 
         private static class ViewHolder {
@@ -142,7 +214,7 @@ public class MainActivity extends AppCompatActivity{
         @NonNull
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            final CategoryModelRoom dataModel = getItem(position);
+            final MainCategoryRoom dataModel = getItem(position);
             ViewHolder viewHolder; // view lookup cache stored in tag
             final View result;
             if (convertView == null) {
@@ -164,7 +236,6 @@ public class MainActivity extends AppCompatActivity{
             result.startAnimation(animation);
             lastPosition = position;
 
-
             assert dataModel != null;
             viewHolder.name.setText(dataModel.name);
             viewHolder.checked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -172,31 +243,11 @@ public class MainActivity extends AppCompatActivity{
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked)
                     {
-                        if(MainActivity.result.size()==0)
-                        {
-                            MainActivity.result.add(dataModel.id);
-                        }
-                        else
-                        {
-                            for(int i=0; i<MainActivity.result.size(); i++)
-                            {
-                                    if(MainActivity.result.get(i)!= dataModel.id)
-                                    {
-                                        MainActivity.result.add(dataModel.id);
-                                    }
-                            }
-                        }
-
-                    }else
+                        isSelected.set(position, true);
+                    }
+                    else
                     {
-                        if(MainActivity.result.size()!=0) {
-                            for (int i = 0; i < MainActivity.result.size(); i++) {
-                                Toast.makeText(mContext, "available", Toast.LENGTH_SHORT).show();
-                                if (MainActivity.result.get(i) == dataModel.id) {
-                                    MainActivity.result.remove(i);
-                                }
-                            }
-                        }
+                        isSelected.set(position, false);
                     }
                 }
             });

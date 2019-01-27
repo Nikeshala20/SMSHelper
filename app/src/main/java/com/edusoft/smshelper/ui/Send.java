@@ -32,10 +32,8 @@ public class Send extends AppCompatActivity {
     EditText editText;
     Button button;
     private ProgressBar progressBar;
-    Integer count =1;
     List<ContactModelRoom> numberList;
-    private Handler progressBarHandler = new Handler();
-    private String message = "";
+;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +56,8 @@ public class Send extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             result = extras.getIntegerArrayList("numberlist");
-            message = extras.getString("msg");
         }
 
-        editText.setText(message);
 
         for(int i=0; i<result.size(); i++)
         {
@@ -80,7 +76,7 @@ public class Send extends AppCompatActivity {
         }
         executorService.shutdown();
         while (!executorService.isTerminated()){}
-        //Toast.makeText(Send.this, numberList.size()+"",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Send.this, numberList.size()+"",Toast.LENGTH_SHORT).show();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

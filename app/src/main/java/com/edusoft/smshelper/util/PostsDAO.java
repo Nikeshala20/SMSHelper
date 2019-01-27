@@ -1,3 +1,8 @@
+/* Tharuka Lakshan
+ * SMS Helper
+ * DATA ACCESS OBJECT (DAO)
+ * All Database operations*/
+
 package com.edusoft.smshelper.util;
 
 import android.arch.persistence.room.Dao;
@@ -9,6 +14,7 @@ import android.arch.persistence.room.Update;
 
 import com.edusoft.smshelper.model.CategoryModelRoom;
 import com.edusoft.smshelper.model.ContactModelRoom;
+import com.edusoft.smshelper.model.MainCategoryRoom;
 import com.edusoft.smshelper.model.SmsModelRoom;
 
 import java.util.ArrayList;
@@ -17,9 +23,10 @@ import java.util.List;
 @Dao
 public interface PostsDAO {
 
-    @Query("SELECT * FROM SmsModelRoom")
-    List<SmsModelRoom> getAll();
 
+    /*
+    * All Category Database operations
+    * */
     @Insert
     void insertCategory(CategoryModelRoom model);
 
@@ -35,9 +42,18 @@ public interface PostsDAO {
     @Query("SELECT * FROM CategoryModelRoom")
     List<CategoryModelRoom> getCatAll();
 
+    @Query("SELECT * FROM CategoryModelRoom WHERE mainCatId=:id")
+    List<CategoryModelRoom> getCatAllWhere(int id);
+
     @Query("SELECT COUNT(*) AS count FROM CategoryModelRoom ")
     int getCatCount();
+//    --------------------------------------------------------------
 
+
+
+    /*
+    * All Contact Database operations
+    * */
     @Insert
     long insertContact(ContactModelRoom post);
 
@@ -55,17 +71,46 @@ public interface PostsDAO {
 
     @Query("SELECT * FROM ContactModelRoom WHERE id= :id LIMIT 1")
     ContactModelRoom getContact(int id);
+//    ------------------------------------------------------------------
 
 
+    /*
+    * SMS All Database operations
+    * */
     @Insert
     void insertSms(SmsModelRoom post);
-
 
     @Delete
     int deleteSms(SmsModelRoom post);
 
     @Query("SELECT * FROM SmsModelRoom WHERE id= :id LIMIT 1")
     SmsModelRoom getSms(int id);
+
+    @Query("SELECT * FROM SmsModelRoom")
+    List<SmsModelRoom> getAll();
+//    ----------------------------------------------------------------
+
+
+
+    /*
+        * Main Category all database operations
+     */
+    @Insert
+    void insertMainCategory(MainCategoryRoom post);
+
+    @Delete
+    void deleteMainCategory(MainCategoryRoom post);
+
+    @Query("SELECT * FROM MainCategoryRoom WHERE id=:id LIMIT 1")
+    MainCategoryRoom getMainCat(int id);
+
+    @Update
+    void updateMainCategory(MainCategoryRoom post);
+
+    @Query("SELECT * FROM MainCategoryRoom")
+    List<MainCategoryRoom> getAllMainCategory();
+//    -----------------------------------------------------------------
+
 
 
 }

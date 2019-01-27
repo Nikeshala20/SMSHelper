@@ -20,7 +20,7 @@
     <string name="send_sms">Send SMS</string>
     <string name="sent_messages">Sent Messages</string>
     <string name="insert_new_numbers">Numbers List</string>
-    <string name="insert_numbers_from_contacts">Insert Numbers From Contacts</string>
+    <string name="insert_numbers_from_contacts">From Contacts</string>
     <string name="add_this_number">Add This Number</string>
     <string name="add_new_contact">Add New Contact</string>
     <string name="insert">Insert</string>

@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.edusoft.smshelper.R;
 import com.edusoft.smshelper.model.CategoryModelRoom;
+import com.edusoft.smshelper.model.MainCategoryRoom;
 import com.edusoft.smshelper.util.AppDatabase;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     SharedPreferences sf;
     private AppDatabase db;
-    List<Integer> catList;
+    List<MainCategoryRoom> mainCategory;
+    List<CategoryModelRoom> category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,29 +33,64 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
         db = Room.databaseBuilder(MainMenu.this,
                 AppDatabase.class, "numbers").build();
+        mainCategory = new ArrayList<>();
+        category = new ArrayList<>();
 
 //        sf = getSharedPreferences("first_time", MODE_PRIVATE);
 //        boolean first = sf.getBoolean("first", true);
 //        sf.edit().putBoolean("first", false);
 //        sf.edit().apply();
 
-        catList = new ArrayList<>();
-        catList.add(R.string.ministers);
-        catList.add(R.string.list_canditates);
-        catList.add(R.string.young_summit);
-        catList.add(R.string.women_summit);
-        catList.add(R.string.branch_summits);
-        catList.add(R.string.business);
-        catList.add(R.string.three_wheel);
-        catList.add(R.string.self_employees);
-        catList.add(R.string.dham_teachers);
-        catList.add(R.string.pre_school);
-        catList.add(R.string.farmers);
-        catList.add(R.string.agri_offices);
-        catList.add(R.string.samurdhi);
-        catList.add(R.string.pension);
-        catList.add(R.string.villedge_officer);
-        catList.add(R.string.other);
+        mainCategory.add(new MainCategoryRoom("Main Category 1"));
+        mainCategory.add(new MainCategoryRoom("Main Category 2"));
+        mainCategory.add(new MainCategoryRoom("Main Category 3"));
+
+
+        category.add(new CategoryModelRoom(getString(R.string.ministers), 1));
+        category.add(new CategoryModelRoom(getString(R.string.list_canditates), 1));
+        category.add(new CategoryModelRoom(getString(R.string.young_summit), 1));
+        category.add(new CategoryModelRoom(getString(R.string.women_summit), 1));
+        category.add(new CategoryModelRoom(getString(R.string.branch_summits), 1));
+
+        category.add(new CategoryModelRoom(getString(R.string.business), 2));
+        category.add(new CategoryModelRoom(getString(R.string.three_wheel), 2));
+        category.add(new CategoryModelRoom(getString(R.string.self_employees), 2));
+        category.add(new CategoryModelRoom(getString(R.string.dham_teachers), 2));
+        category.add(new CategoryModelRoom(getString(R.string.pre_school), 2));
+        category.add(new CategoryModelRoom(getString(R.string.farmers), 2));
+
+        category.add(new CategoryModelRoom(getString(R.string.agri_offices), 3));
+        category.add(new CategoryModelRoom(getString(R.string.samurdhi), 3));
+        category.add(new CategoryModelRoom(getString(R.string.pension), 3));
+        category.add(new CategoryModelRoom(getString(R.string.villedge_officer), 3));
+        category.add(new CategoryModelRoom(getString(R.string.other), 3));
+
+        Thread custom =new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        int count = db.userDao().getCatCount();
+                        if(count<=0) {
+                            for(int i=0; mainCategory.size()>i; i++)
+                            {
+                                db.userDao().insertMainCategory(mainCategory.get(i));
+                            }
+
+                            for(int i=0; i<category.size(); i++)
+                            {
+                                db.userDao().insertCategory(category.get(i));
+                            }
+                        }
+                    }
+                }
+        );
+        custom.start();
+        try {
+            custom.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -64,28 +101,13 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
             Log.d("PLAYGROUND", "Permission is granted");
         }
 
-        new Thread()
-        {
-            @Override
-            public void run() {
-                super.run();
-                int count = db.userDao().getCatCount();
-                if(count<=0)
-                {
-                    for(int i=0; i<catList.size(); i++)
-                    {
-                        CategoryModelRoom model = new CategoryModelRoom(getString(catList.get(i)));
-                        db.userDao().insertCategory(model);
-                    }
-                }
-            }
-        }.start();
 
         findViewById(R.id.send_sms).setOnClickListener(this);
         findViewById(R.id.insert_numbers_from_contact_list).setOnClickListener(this);
         findViewById(R.id.numbers_list).setOnClickListener(this);
         findViewById(R.id.category_insert).setOnClickListener(this);
         findViewById(R.id.sent_sms).setOnClickListener(this);
+        findViewById(R.id.main_category_button).setOnClickListener(this);
 
     }
 
@@ -112,6 +134,10 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
                 break;
             case R.id.sent_sms:
                 i = new Intent(MainMenu.this, SentBox.class);
+                startActivity(i);
+                break;
+            case R.id.main_category_button:
+                i = new Intent(MainMenu.this, MainCategory.class);
                 startActivity(i);
                 break;
         }

@@ -30,7 +30,6 @@ import com.edusoft.smshelper.R;
 import com.edusoft.smshelper.model.CategoryModelRoom;
 import com.edusoft.smshelper.model.ContactModelRoom;
 import com.edusoft.smshelper.util.AppDatabase;
-import com.edusoft.smshelper.util.CategoryHelper;
 
 import java.util.ArrayList;
 import java.util.List;

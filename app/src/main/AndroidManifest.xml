@@ -15,7 +15,9 @@
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/noAction" />
-        <activity android:name=".ui.MainMenu" />
+        <activity
+            android:name=".ui.MainMenu"
+            android:theme="@style/noAction" />
         <activity
             android:name=".ui.NumbersList"
             android:theme="@style/noAction" />
@@ -52,6 +54,15 @@
             android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".ui.SentBox"
+            android:theme="@style/noAction" />
+        <activity
+            android:name=".ui.MainCategory"
+            android:theme="@style/noAction" />
+        <activity
+            android:name=".ui.UpdateMainCategory"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".ui.SubCategory"
             android:theme="@style/noAction" />
     </application>
 
